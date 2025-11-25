@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="utf-8">
+  <title>Estado de Resultados Integrales</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Bootstrap App Landing Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Small Apps Template v1.0">
+  <meta name="theme-name" content="small-apps" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+  
+  <!-- PLUGINS CSS STYLE -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="plugins/aos/aos.css">
+
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <style>
+    /* Ajustes específicos para el estado de resultados */
+    .resultado-wrapper {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .card-estado {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .card-estado .card-header {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+    }
+
+    .card-estado h1,
+    .card-estado h2,
+    .card-estado h3 {
+      margin-bottom: 0.25rem;
+    }
+
+    .table-estado thead th {
+      background-color: #e9ecef;
+      color: #212529;
+      vertical-align: middle;
+    }
+
+    .table-estado td,
+    .table-estado th {
+      vertical-align: middle;
+    }
+
+    .table-estado .total-row {
+      background-color: #f1f3f5;
+      font-weight: 600;
+    }
+
+    .table-estado .subtitulo-row {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+
+    .btn-detalle {
+      font-size: 0.8rem;
+    }
+
+    .note {
+      text-align: center;
+      color: #6c757d;
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+	/* --- Animación de "latido" para filas importantes --- */
+/* --- Animación azul tipo "latido" para filas importantes --- */
+@keyframes pulseRow {
+  0% {
+    background-color: #e8f2ff;  /* azul muy suave, casi blanco */
+  }
+  50% {
+    background-color: #cfe4ff;  /* azul medio suave */
+  }
+  100% {
+    background-color: #e8f2ff;
+  }
+}
+
+.row-pulse {
+  animation: pulseRow 2.0s ease-in-out infinite;
+  font-weight: 600;
+}
+
+.row-pulse-soft {
+  animation: pulseRow 3.0s ease-in-out infinite;
+  font-weight: 600;
+}
+
+
+.row-pulse {
+  animation: pulseRow 2.0s ease-in-out infinite;
+}
+
+/* Versión un poco más suave para detalle dentro de las notas */
+.row-pulse-soft {
+  animation: pulseRow 3s ease-in-out infinite;
+}
+
+/* Para que el texto también resalte un poquito */
+.row-pulse td,
+.row-pulse-soft td {
+  font-weight: 600;
+}
+
+  </style>
+
+</head>
+
+<body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+
+  <section class="resultado-wrapper">
+    <div class="container">
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+          <div class="card shadow-lg border-0 card-estado">
+            <!-- Encabezado -->
+            <div class="card-header text-white text-center py-4">
+              <h1 class="h3 mb-1">ESTADOS DE RESULTADOS INTEGRALES</h1>
+              <h2 class="h5 mb-1">Por los años terminados el 31 de diciembre de 2023 y 2022</h2>
+              <h3 class="h6 mb-0">(Cifras expresadas en miles de pesos)</h3>
+            </div>
+
+            <!-- Cuerpo con tabla -->
+            <div class="card-body p-4">
+
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-estado">
+                  <thead>
+                    <tr>
+                      <th>Concepto</th>
+                      <th class="text-center">Nota</th>
+                      <th class="text-right">2023</th>
+                      <th class="text-right">2022</th>
+                    </tr>
+                  </thead>
+
+                  <!-- Usamos id para manejar los collapse como acordeón -->
+                  <tbody id="accordionGastos">
+                    <!-- Ingresos -->
+                    <tr><td>Ingresos ordinarios</td><td class="text-center">22</td><td></td><td></td></tr>
+                    <tr><td>&nbsp;&nbsp;&nbsp;Ingresos ventas</td><td></td><td class="text-right">23,090,464</td><td class="text-right">19,858,512</td></tr>
+                    <tr><td>&nbsp;&nbsp;&nbsp;Ingresos servicios</td><td></td><td class="text-right">30,047,618</td><td class="text-right">11,565,221</td></tr>
+                    <tr><td>&nbsp;&nbsp;&nbsp;Devoluciones y anulaciones en ventas</td><td></td><td class="text-right">(3,897,458)</td><td class="text-right">(4,643,216)</td></tr>
+					<tr class="total-row row-pulse">
+					<td>TOTAL DE INGRESOS NETOS</td>
+					<td></td>
+					<td class="text-right">49,240,623</td>
+					<td class="text-right">26,780,517</td>
+					</tr>
+
+
+                    <!-- Costo de ventas -->
+                    <tr><td>Costo de ventas</td><td class="text-center">23</td><td></td><td></td></tr>
+                    <tr class="row-pulse">
+					<td>&nbsp;&nbsp;&nbsp;Costo de ventas</td>
+					<td></td>
+					<td class="text-right">(18,120,517)</td>
+					<td class="text-right">(9,688,827)</td>
+					</tr>
+                    <tr class="total-row">
+                      <td>UTILIDAD BRUTA</td>
+                      <td></td>
+                      <td class="text-right">31,120,106</td>
+                      <td class="text-right">17,091,690</td>
+                    </tr>
+
+                    <!-- Gastos ordinarios -->
+                    <tr class="subtitulo-row"><td>Gastos ordinarios</td><td></td><td></td><td></td></tr>
+
+                    <!-- GASTOS ADMINISTRATIVOS -->
+                    <tr class="row-pulse">
+					<td>
+						&nbsp;&nbsp;&nbsp;Gastos administrativos
+						<button class="btn btn-link btn-sm p-0 ml-2 btn-detalle"
+								data-toggle="collapse"
+								data-target="#detalleGastosAdm"
+								aria-expanded="false"
+								aria-controls="detalleGastosAdm">
+						Ver detalle <i class="ti-angle-down small"></i>
+						</button>
+					</td>
+					<td class="text-center">24</td>
+					<td class="text-right">(4,722,061)</td>
+					<td class="text-right">(3,466,972)</td>
+					</tr>
+
+
+                    <!-- Detalle gastos administrativos -->
+                    <tr id="detalleGastosAdm" class="collapse" data-parent="#accordionGastos">
+                      <td colspan="4">
+                        <div class="card card-body p-0">
+                          <div class="table-responsive">
+                            <table class="table table-sm mb-0">
+                              <thead class="thead-light">
+                                <tr>
+                                  <th>Descripción</th>
+                                  <th class="text-right">Dic 2023</th>
+                                  <th class="text-right">Dic 2022</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr><td>Gastos de personal</td><td class="text-right">2,263,253</td><td class="text-right">2,343,047</td></tr>
+                                <tr><td>Honorarios</td><td class="text-right">1,191,674</td><td class="text-right">252,579</td></tr>
+                                <tr><td>Impuestos</td><td class="text-right">254,655</td><td class="text-right">147,900</td></tr>
+                                <tr><td>Arrendamientos</td><td class="text-right">54,323</td><td class="text-right">36,877</td></tr>
+                                <tr><td>Seguros</td><td class="text-right">675</td><td class="text-right">3,758</td></tr>
+                                
+								<tr class="row-pulse-soft">
+								<td>Amortización</td>
+								<td class="text-right">34,414</td>
+								<td class="text-right">20,218</td>
+								</tr>
+
+                                <tr><td>Servicios</td><td class="text-right">322,479</td><td class="text-right">294,323</td></tr>
+                                <tr><td>Gastos legales</td><td class="text-right">19,963</td><td class="text-right">25,782</td></tr>
+                                <tr><td>Mantenimiento y reparaciones</td><td class="text-right">19,892</td><td class="text-right">4,278</td></tr>
+                                <tr><td>Adecuación e instalación</td><td class="text-right">35,425</td><td class="text-right">6,066</td></tr>
+                                <tr><td>Gastos de viajes</td><td class="text-right">41,710</td><td class="text-right">53,076</td></tr>
+                               <tr class="row-pulse-soft">
+								<td>Depreciación</td>
+								<td class="text-right">374,402</td>
+								<td class="text-right">202,055</td>
+								</tr>
+                                <tr><td>Desvalorización de propiedad de inversión</td><td class="text-right">-</td><td class="text-right">-</td></tr>
+                                <tr><td>Diversos (a)</td><td class="text-right">109,196</td><td class="text-right">77,012</td></tr>
+                                <tr class="font-weight-bold"><td>Total gastos administrativos</td><td class="text-right">4,722,061</td><td class="text-right">3,466,972</td></tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- GASTOS DE VENTAS -->
+			<tr class="row-pulse">
+			<td>
+				&nbsp;&nbsp;&nbsp;Gastos de ventas
+				<button class="btn btn-link btn-sm p-0 ml-2 btn-detalle"
+						data-toggle="collapse"
+						data-target="#detalleGastosVentas"
+						aria-expanded="false"
+						aria-controls="detalleGastosVentas">
+				Ver detalle <i class="ti-angle-down small"></i>
+				</button>
+			</td>
+			<td class="text-center">24</td>
+			<td class="text-right">(15,064,764)</td>
+			<td class="text-right">(6,938,472)</td>
+			</tr>
+
+								<!-- Detalle gastos de ventas -->
+                    <tr id="detalleGastosVentas" class="collapse" data-parent="#accordionGastos">
+                      <td colspan="4">
+                        <div class="card card-body p-0">
+                          <div class="table-responsive">
+                            <table class="table table-sm mb-0">
+                              <thead class="thead-light">
+                                <tr>
+                                  <th>Descripción</th>
+                                  <th class="text-right">Dic 2023</th>
+                                  <th class="text-right">Dic 2022</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr><td>Gastos de personal</td><td class="text-right">9,320,307</td><td class="text-right">3,976,891</td></tr>
+                                <tr><td>Capacitación al personal</td><td class="text-right">163,648</td><td class="text-right">28,734</td></tr>
+                                <tr><td>Honorarios</td><td class="text-right">712,060</td><td class="text-right">427,131</td></tr>
+                                <tr><td>Impuestos</td><td class="text-right">587,398</td><td class="text-right">224,643</td></tr>
+                                <tr><td>Arrendamientos</td><td class="text-right">102,244</td><td class="text-right">1,153</td></tr>
+                                <tr><td>Contribuciones y afiliaciones</td><td class="text-right">28,840</td><td class="text-right">14,622</td></tr>
+                                <tr><td>Seguros</td><td class="text-right">50,372</td><td class="text-right">36,031</td></tr>
+                                <tr><td>Servicios</td><td class="text-right">1,322,317</td><td class="text-right">739,011</td></tr>
+                                <tr><td>Gastos legales</td><td class="text-right">2,631</td><td class="text-right">1,241</td></tr>
+                                <tr><td>Mantenimiento y reparaciones</td><td class="text-right">19,911</td><td class="text-right">7,541</td></tr>
+                                <tr><td>Adecuación e instalación</td><td class="text-right">16,870</td><td class="text-right">3,288</td></tr>
+                                <tr><td>Gastos de viajes</td><td class="text-right">401,749</td><td class="text-right">139,670</td></tr>
+                                <tr class="row-pulse-soft">
+								<td>Depreciaciones</td>
+								<td class="text-right">1,209,903</td>
+								<td class="text-right">367,565</td>
+								</tr>
+                                <tr><td>Diversos (b)</td><td class="text-right">801,940</td><td class="text-right">942,230</td></tr>
+                                <tr><td>Gastos Cuenta en Participación</td><td class="text-right">257,528</td><td class="text-right">-</td></tr>
+                                <tr><td>Indemnización</td><td class="text-right">56,664</td><td class="text-right">6,981</td></tr>
+                                <tr><td>Provisión Cartera</td><td class="text-right">10,380</td><td class="text-right">21,740</td></tr>
+                                <tr class="font-weight-bold"><td>Total gastos de ventas</td><td class="text-right">15,064,764</td><td class="text-right">6,938,472</td></tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr class="total-row">
+                      <td>TOTAL GASTOS ORDINARIOS</td>
+                      <td></td>
+                      <td class="text-right">(19,786,825)</td>
+                      <td class="text-right">(10,405,444)</td>
+                    </tr>
+
+                    <tr class="total-row">
+                      <td>UTILIDAD OPERACIONAL</td>
+                      <td></td>
+                      <td class="text-right">11,333,281</td>
+                      <td class="text-right">6,686,245</td>
+                    </tr>
+
+                    <!-- Otros gastos -->
+                    <tr><td>Otros gastos</td><td></td><td></td><td></td></tr>
+                    <tr><td>&nbsp;&nbsp;&nbsp;Otros gastos</td><td class="text-center">25</td><td class="text-right">(2,092,552)</td><td class="text-right">(850,983)</td></tr>
+                    <tr class="total-row">
+                      <td>TOTAL OTROS GASTOS</td>
+                      <td></td>
+                      <td class="text-right">(2,092,552)</td>
+                      <td class="text-right">(850,983)</td>
+                    </tr>
+
+                    <!-- Otros ingresos -->
+                    <tr><td>Otros ingresos</td><td></td><td></td><td></td></tr>
+                    <tr><td>&nbsp;&nbsp;&nbsp;Otros ingresos ordinarios</td><td class="text-center">26</td><td class="text-right">1,680,908</td><td class="text-right">719,793</td></tr>
+                    <tr class="total-row">
+                      <td>TOTAL OTROS INGRESOS</td>
+                      <td></td>
+                      <td class="text-right">1,680,908</td>
+                      <td class="text-right">719,793</td>
+                    </tr>
+
+                    <tr class="total-row">
+                      <td>UTILIDAD ANTES DE IMPUESTOS</td>
+                      <td></td>
+                      <td class="text-right">10,921,637</td>
+                      <td class="text-right">6,555,055</td>
+                    </tr>
+
+                    <!-- Impuestos -->
+                    <tr><td>Impuesto de renta</td><td class="text-center">27</td><td class="text-right">(4,065,343)</td><td class="text-right">(2,388,254)</td></tr>
+                    <tr><td>Impuestos diferidos</td><td class="text-center">20</td><td class="text-right">149,692</td><td class="text-right">(220,722)</td></tr>
+
+                    <tr class="total-row">
+                      <td>RESULTADO DEL EJERCICIO</td>
+                      <td></td>
+                      <td class="text-right">7,005,986</td>
+                      <td class="text-right">3,946,079</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="note mb-0">Las notas son parte integral de los estados financieros.</p>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- To Top -->
+  <div class="scroll-top-to">
+    <i class="ti-angle-up"></i>
+  </div>
+  
+  <!-- JAVASCRIPTS -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="plugins/slick/slick.min.js"></script>
+  <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
+  <script src="plugins/syotimer/jquery.syotimer.min.js"></script>
+  <script src="plugins/aos/aos.js"></script>
+  <script src="plugins/google-map/gmap.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+</html>

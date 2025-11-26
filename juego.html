@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Juego EBITDA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .game-card {
+      background: #020617;
+      border-radius: 16px;
+      padding: 24px 28px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(15,23,42,0.7);
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #22c55e22;
+      color: #22c55e;
+      margin-bottom: 6px;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 0 0 4px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 18px;
+    }
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #9ca3af;
+    }
+    .progress {
+      flex: 1;
+      height: 8px;
+      background: #1f2937;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-left: 12px;
+    }
+    .progress-inner {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg,#22c55e,#a3e635);
+      transition: width 0.3s ease-out;
+    }
+    .question-box {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #020617;
+      border: 1px solid #1f2937;
+    }
+    .question-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+    .question-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      margin-bottom: 10px;
+    }
+    button {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.08s ease-out, box-shadow 0.1s ease-out, background 0.15s;
+    }
+    button:active {
+      transform: scale(0.97);
+    }
+    .btn-yes {
+      background: #16a34a;
+      color: white;
+      box-shadow: 0 0 0 1px #15803d;
+    }
+    .btn-yes:hover {
+      background: #22c55e;
+    }
+    .btn-no {
+      background: #ef4444;
+      color: white;
+      box-shadow: 0 0 0 1px #b91c1c;
+    }
+    .btn-no:hover {
+      background: #f97373;
+    }
+    .feedback {
+      min-height: 52px;
+      font-size: 14px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #020617;
+      border: 1px dashed #374151;
+      display: flex;
+      align-items: center;
+    }
+    .feedback.correct {
+      border-color: #22c55e;
+      background: #022c22;
+      color: #bbf7d0;
+    }
+    .feedback.wrong {
+      border-color: #f97316;
+      background: #451a03;
+      color: #fed7aa;
+    }
+    .final-message {
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-card">
+    <div class="tag">Juego interactivo</div>
+    <h1>¿Esta partida cuenta para el EBITDA?</h1>
+    <p class="subtitle">
+      Voten levantando la mano por <b>Sí</b> o <b>No</b>. Tú confirmas desde el computador.
+    </p>
+
+    <div class="status-bar">
+      <span>Puntos: <span id="score">0</span></span>
+      <div class="progress">
+        <div id="progress-inner" class="progress-inner"></div>
+      </div>
+      <span id="counter">0 / 0</span>
+    </div>
+
+    <div class="question-box">
+      <div class="question-label">Partida del estado de resultados</div>
+      <div id="question-text" class="question-text">Cargando…</div>
+
+      <div class="buttons">
+        <button class="btn-yes" onclick="answer(true)">✔ Sí cuenta para el EBITDA</button>
+        <button class="btn-no" onclick="answer(false)">✖ No cuenta para el EBITDA</button>
+      </div>
+
+      <div id="feedback" class="feedback">
+        Toca un botón para responder.
+      </div>
+    </div>
+
+    <div id="final" class="final-message hidden"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "Ingresos operacionales por ventas",
+        isEbitda: true,
+        explanation: "✔ Sí. Es el punto de partida para calcular el EBITDA."
+      },
+      {
+        text: "Costo de ventas / costo de los servicios",
+        isEbitda: true,
+        explanation: "✔ Sí. Es un costo operativo, afecta el margen operativo."
+      },
+      {
+        text: "Gastos administrativos (sueldos, arriendo oficina, etc.)",
+        isEbitda: true,
+        explanation: "✔ Sí. Son gastos operativos antes de depreciación."
+      },
+      {
+        text: "Depreciación y amortización",
+        isEbitda: false,
+        explanation: "✖ No. Precisamente el EBITDA es ANTES de depreciación y amortización."
+      },
+      {
+        text: "Gasto por intereses del crédito bancario",
+        isEbitda: false,
+        explanation: "✖ No. El EBITDA es antes de intereses (financiación)."
+      },
+      {
+        text: "Impuesto de renta",
+        isEbitda: false,
+        explanation: "✖ No. El EBITDA es antes de impuestos."
+      },
+      {
+        text: "Ingreso por interés ganado sobre inversiones financieras",
+        isEbitda: false,
+        explanation: "✖ No. Es ingreso financiero, no operativo del negocio principal."
+      },
+      {
+        text: "Ganancia por venta de un activo fijo (ej. una máquina)",
+        isEbitda: false,
+        explanation: "✖ No. Es un resultado no recurrente / no operativo."
+      },
+      {
+        text: "Gasto de mercadeo y publicidad",
+        isEbitda: true,
+        explanation: "✔ Sí. Es un gasto operativo corriente."
+      },
+      {
+        text: "Multa extraordinaria por una demanda",
+        isEbitda: false,
+        explanation: "✖ No. Suele tratarse como gasto no operativo / extraordinario."
+      }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function updateUI() {
+      const q = questions[currentIndex];
+      document.getElementById("question-text").textContent = q.text;
+      document.getElementById("counter").textContent =
+        (currentIndex + 1) + " / " + questions.length;
+      document.getElementById("score").textContent = score;
+      const progress = ((currentIndex) / questions.length) * 100;
+      document.getElementById("progress-inner").style.width = progress + "%";
+    }
+
+    function answer(userSaysEbitda) {
+      const q = questions[currentIndex];
+      const feedback = document.getElementById("feedback");
+      feedback.classList.remove("correct", "wrong");
+
+      if (userSaysEbitda === q.isEbitda) {
+        score++;
+        feedback.classList.add("correct");
+        feedback.textContent = "Correcto. " + q.explanation;
+      } else {
+        feedback.classList.add("wrong");
+        feedback.textContent = "No exactamente… " + q.explanation;
+      }
+
+      currentIndex++;
+
+      if (currentIndex < questions.length) {
+        setTimeout(() => {
+          feedback.classList.remove("correct", "wrong");
+          feedback.textContent = "¿Cuenta o no cuenta para el EBITDA?";
+          updateUI();
+        }, 1700);
+      } else {
+        // Juego terminado
+        document.getElementById("progress-inner").style.width = "100%";
+        showFinalMessage();
+      }
+    }
+
+    function showFinalMessage() {
+      const final = document.getElementById("final");
+      final.classList.remove("hidden");
+
+      let msg;
+      if (score === questions.length) {
+        msg = "🔥 ¡EBITDA MASTER! Respondiste todo perfecto.";
+      } else if (score >= questions.length * 0.7) {
+        msg = `Muy bien: ${score}/${questions.length}. Ya tienes claro qué entra en el EBITDA.`;
+      } else {
+        msg = `Puntos: ${score}/${questions.length}. Buen intento, pero vale la pena repasar la definición de EBITDA.`;
+      }
+      final.textContent = msg;
+    }
+
+    // Inicializar
+    shuffle(questions);
+    updateUI();
+  </script>
+</body>
+</html>

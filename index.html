@@ -675,8 +675,8 @@
 
 
 
-  <div class="modal fade" id="modalInductores" tabindex="-1" role="dialog" aria-labelledby="modalInductoresLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal fade" id="modalInductores" tabindex="-1" role="dialog" aria-labelledby="modalInductoresLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content border-0 shadow">
 
       <!-- HEADER -->
@@ -687,24 +687,23 @@
         </button>
       </div>
 
-      <!-- NAV TABS -->
-      <ul class="nav nav-tabs px-3 pt-3" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="tab-definicion" data-toggle="tab" href="#pane-definicion" role="tab">
-            Definición
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="tab-analogia" data-toggle="tab" href="#pane-analogia" role="tab">
-            Analogía del carro
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="tab-ejemplos" data-toggle="tab" href="#pane-ejemplos" role="tab">
-            Ejemplos en la empresa
-          </a>
-        </li>
-      </ul>
+<ul class="nav nav-tabs px-3 pt-3 flex-column flex-sm-row" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="tab-definicion" data-toggle="tab" href="#pane-definicion" role="tab">
+      Definición
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="tab-analogia" data-toggle="tab" href="#pane-analogia" role="tab">
+      Analogía del carro
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="tab-ejemplos" data-toggle="tab" href="#pane-ejemplos" role="tab">
+      Ejemplos en la empresa
+    </a>
+  </li>
+</ul>
 
       <!-- BODY CON PANELES -->
       <div class="modal-body">

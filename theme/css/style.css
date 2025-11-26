@@ -1953,3 +1953,44 @@ hr {
     padding: 0.4rem 0.6rem;
   }
 }
+/* --- Ajustes globales para móvil --- */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;  /* Evita que nada se salga por el lado derecho */
+}
+/* Modal Inductores: hacerlo realmente responsive */
+#modalInductores .modal-dialog {
+  max-width: 100%;
+  margin: 0.5rem;
+}
+
+#modalInductores .modal-content {
+  width: 100%;
+}
+
+/* En pantallas pequeñas, que el contenido tenga scroll si es muy largo */
+@media (max-width: 576px) {
+  #modalInductores .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  #modalInductores .modal-content {
+    max-height: calc(100vh - 1rem);
+    overflow: hidden;
+  }
+
+  #modalInductores .modal-body {
+    overflow-y: auto;
+  }
+
+  /* Las tabs más cómodas en vertical */
+  #modalInductores .nav-tabs {
+    flex-direction: column;
+  }
+
+  #modalInductores .nav-tabs .nav-link {
+    text-align: left;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+}

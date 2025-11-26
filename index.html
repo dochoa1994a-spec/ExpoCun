@@ -39,6 +39,9 @@
 
   <!-- CUSTOM CSS -->
   <link href="./theme/css/style.css" rel="stylesheet">
+  <!-- Fancybox CSS -->
+
+
 
 </head>
 
@@ -113,144 +116,192 @@
 
 
 
-
+<!--======================================
+=     CLASIFICACIÓN DE INDUCTORES       =
+=======================================-->
 <section class="section pt-0 position-relative pull-top">
-	<div class="container">
-		<div class="rounded shadow p-5 bg-white">
-			
-			<h2 class="text-center mb-4">Clasificación de Inductores</h2>
+  <div class="container">
+    <div class="rounded shadow p-5 bg-white">
 
-			<div class="row">
+      <div class="text-center mb-4">
+        <h2 class="mb-2">Clasificación de Inductores</h2>
+        <p class="text-muted mb-0" style="max-width: 580px; margin: 0 auto;">
+          Tres niveles que explican cómo se crea valor en la empresa:
+          desde los grandes resultados hasta las decisiones día a día.
+        </p>
+      </div>
 
-				<!-- MACROINDUCTORES ------------------------------------------>
-				<div class="col-lg-4 col-md-6 mt-4">
-					<div class="p-4 text-center bg-white shadow-sm card-hover">
-						
-						<i class="ti-paint-bucket text-primary h1"></i>
-						<h3 class="mt-3 h5">Macroinductores</h3>
-						<p class="text-muted">
-							Factores grandes y globales que afectan el valor de toda la empresa.
-						</p>
+      <div class="row">
 
-						<ul class="text-left small text-muted d-inline-block mb-0">
-							<li>Rentabilidad del activo</li>
-							<li>Flujo de Caja Libre</li>
-						</ul>
+        <!-- MACROINDUCTORES -->
+        <div class="col-lg-4 col-md-6 mt-4">
+          <div class="inductor-card h-100 text-center">
 
-					</div>
-				</div>
+            <div class="inductor-icon mb-3">
+              <i class="ti-paint-bucket"></i>
+            </div>
 
-				<!-- OPERATIVOS ---------------------------------------------->
-				<div class="col-lg-4 col-md-6 mt-4">
-					<div class="p-4 text-center bg-white shadow-sm card-hover">
+            <h3 class="h5 mb-2">Macroinductores</h3>
+            <p class="text-muted small mb-3">
+              Factores globales que se reflejan en el valor total de la empresa.
+            </p>
 
-						<i class="ti-shine text-primary h1"></i>
-						<h3 class="mt-3 h5">Inductores Operativos</h3>
-						<p class="text-muted">
-							Aspectos del día a día que impulsan el desempeño operativo.
-						</p>
+            <ul class="text-left small text-muted list-unstyled mb-0">
+              <li>Rentabilidad del activo</li>
+              <li>Flujo de Caja Libre</li>
+            </ul>
 
-						<ul class="text-left small text-muted d-inline-block mb-0">
-							<li>EBITDA</li>
-							<li>Productividad del capital de trabajo</li>
-							<li>Productividad del activo fijo</li>
-						</ul>
+          </div>
+        </div>
 
-					</div>
-				</div>
+        <!-- OPERATIVOS -->
+        <div class="col-lg-4 col-md-6 mt-4">
+          <div class="inductor-card h-100 text-center">
 
-				<!-- ESTRATÉGICOS -------------------------------------------->
-				<div class="col-lg-4 col-md-6 mt-4">
-					<div class="p-4 text-center bg-white shadow-sm card-hover">
+            <div class="inductor-icon mb-3">
+              <i class="ti-shine"></i>
+            </div>
 
-						<i class="ti-thought text-primary h1"></i>
-						<h3 class="mt-3 h5">Inductores Estratégicos</h3>
-						<p class="text-muted">
-							Decisiones de largo plazo que definen el rumbo futuro del negocio.
-						</p>
+            <h3 class="h5 mb-2">Inductores Operativos</h3>
+            <p class="text-muted small mb-3">
+              Variables del día a día que impulsan el desempeño operativo.
+            </p>
 
-						<ul class="text-left small text-muted d-inline-block mb-0">
-							<li>Microinductores estratégicos</li>
-							<li>Tasa de reinversión</li>
-						</ul>
+            <ul class="text-left small text-muted list-unstyled mb-0">
+              <li>EBITDA</li>
+              <li>Productividad del capital de trabajo</li>
+              <li>Productividad del activo fijo</li>
+            </ul>
 
-					</div>
-				</div>
+          </div>
+        </div>
 
-			</div>
+        <!-- ESTRATÉGICOS -->
+        <div class="col-lg-4 col-md-6 mt-4">
+          <div class="inductor-card h-100 text-center">
 
-		</div>
-	</div>
+            <div class="inductor-icon mb-3">
+              <i class="ti-thought"></i>
+            </div>
+
+            <h3 class="h5 mb-2">Inductores Estratégicos</h3>
+            <p class="text-muted small mb-3">
+              Decisiones de largo plazo que marcan el rumbo del negocio.
+            </p>
+
+            <ul class="text-left small text-muted list-unstyled mb-0">
+              <li>Microinductores estratégicos</li>
+              <li>Tasa de reinversión</li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!--==================================
-=            Feature Grid            =
+=        EBITDA + GRÁFICA           =
 ===================================-->
 <section class="feature section pt-0">
   <div class="container">
     <div class="row">
 
-      <!-- ===================== -->
-      <!--   GRAFICA IZQUIERDA   -->
-      <!-- ===================== -->
-      <div class="col-lg-6 ml-auto justify-content-center">
+      <!-- GRAFICA IZQUIERDA -->
+      <div class="col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0">
         <div class="image-content" data-aos="fade-right">
-
-          <!-- Canvas para Chart.js -->
           <canvas id="ebitdaChart" style="max-width: 100%; height: 350px;"></canvas>
-
         </div>
       </div>
 
-      <!-- ===================== -->
-      <!--  TEXTO DERECHA        -->
-      <!-- ===================== -->
-      <div class="col-lg-6 mr-auto align-self-center">
-  <div class="feature-content">
+      <!-- TEXTO + TARJETA DERECHA -->
+      <div class="col-lg-6 order-1 order-lg-2 align-self-center">
+        <div class="feature-content">
 
-    <!-- Feature Title -->
-    <h2 class="mb-4">¿Qué es el EBITDA?</h2>
+          <h2 class="mb-3">¿Qué es el EBITDA?</h2>
 
-    <!-- Feature Description -->
-    <p class="desc" style="font-size: 1.05rem;">
-      El <strong>EBITDA</strong> (Earnings Before Interest, Taxes, Depreciation and Amortization) 
-      es un indicador financiero que muestra la 
-      <u>rentabilidad operativa real</u> de una empresa.
-      <br><br>
-      Refleja la generación de dinero del negocio 
-      <strong>antes de intereses, impuestos, depreciaciones y amortizaciones</strong>.
-      <br>
-      Solo considera la <strong>operación pura</strong>: ventas, costos y gastos del periodo.
-      No se ve afectado por inversiones, financiación ni políticas contables.
-    </p>
+          <p class="desc" style="font-size: 1.05rem;">
+            El <strong>EBITDA</strong> (Earnings Before Interest, Taxes, Depreciation and Amortization)
+            muestra la <u>rentabilidad operativa real</u> de una empresa.
+            Refleja cuánto dinero genera el negocio
+            <strong>antes de intereses, impuestos, depreciaciones y amortizaciones</strong>.
+          </p>
 
-    <!-- 🔵 BOTÓN PARA ABRIR EL MODAL -->
-    <button class="btn btn-primary mt-3"
-            data-toggle="modal"
-            data-target="#modalPyG">
-      Ver Estado de Resultados (PyG)
-    </button>
+          <p class="desc" style="font-size: 0.98rem;">
+            Es decir, se concentra en la <strong>operación pura</strong>:
+            ventas, costos y gastos operativos del periodo, sin mezclar
+            decisiones de financiación, impuestos ni criterios contables.
+          </p>
 
+          <button class="btn btn-main-sm mt-2"
+                  data-toggle="modal"
+                  data-target="#modalPyG">
+            Ver Estado de Resultados (PyG)
+          </button>
+
+          <!-- Fórmula -->
+          <div class="mt-4">
+            <p style="background:#f8fbff; padding:15px; border-left:4px solid #2a78ff; border-radius:6px; font-size:0.95rem;">
+              <strong>Fórmulas útiles:</strong><br>
+              <code>EBITDA = Utilidad Operativa + Depreciación + Amortización</code><br>
+              <span class="d-block mt-1"></span>
+              <code>EBITDA = Ingresos – Costos operativos en efectivo</code>
+            </p>
+          </div>
+
+        </div>
+
+        <!-- TARJETA RESUMEN EBITDA -->
+        <div class="ebitda-card mt-3">
+          <div class="ebitda-card-header">
+            <span>Resumen EBITDA          2023        2022</span>
+          </div>
+
+          <div class="ebitda-card-body">
+  <div class="eb-row">
+              <span>año</span>
+              <span>2023</span>
+              <span class="text-muted">2022</span>
+            </div>
+
+            <div class="eb-row">
+              <span>Utilidad Operacional</span>
+              <span>$ 11,333,281</span>
+              <span class="text-muted">$ 6,686,245</span>
+            </div>
+            <div class="eb-row">
+              <span>Amortización(administrativa)</span>
+              <span>$ 34,414</span>
+              <span class="text-muted">$ 20,218</span>
+            </div>
+            <div class="eb-row">
+              <span>Depreciación(administrativa)</span>
+              <span>$ 374,402</span>
+              <span class="text-muted">$ 202,055</span>
+            </div>
+            <div class="eb-row">
+              <span>Depreciaciones(Ventass)</span>
+              <span>$ 1,209,903</span>
+              <span class="text-muted">$ 367,565</span>
+            </div>
+
+            <div class="eb-row eb-row-total">
+              <span><strong>EBITDA</strong></span>
+              <span class="text-success"><strong>$ 12,883,172</strong></span>
+              <span class="text-success"><strong>$ 7,276,083</strong></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </div>
-
-  <!-- Testimonial Quote -->
-  <div class="testimonial">
-    <p style="background:#f8fbff; padding:15px; border-left:4px solid #2a78ff; border-radius:6px;">
-      <strong>Fórmula del EBITDA:</strong><br>
-      <code style="font-size:1rem;">
-        EBITDA = Utilidad Operativa + Depreciación + Amortización
-      </code>
-      <br>
-      o también:<br>
-      <code style="font-size:1rem;">
-        EBITDA = Ingresos – Costos operativos en efectivo
-      </code>
-    </p>
-  </div>
-
-</div>
-
 </section>
+
 
 <!--===============================-->
 <!--   SCRIPT DE LA GRÁFICA        -->
@@ -306,343 +357,91 @@
 </script>
 
 
-<section class="feature section pt-0">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 ml-auto align-self-center">
-				<div class="feature-content">
-					<!-- Feature Title -->
-					<h2>Increase your productivity with <a
-							href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small Apps</a></h2>
-					<!-- Feature Description -->
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-						dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-						ea commodo consequat.</p>
-				</div>
-				<!-- Testimonial Quote -->
-				<div class="testimonial">
-					<p>
-						"InVision is a window into everything that's being designed at Twitter. It gets all of our best work in one
-						place."
-					</p>
-					<ul class="list-inline meta">
-						<li class="list-inline-item">
-							<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="">
-						</li>
-						<li class="list-inline-item">Jonathon Andrew , Themefisher.com</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-6 mr-auto justify-content-center">
-				<!-- Feature mockup -->
-				<div class="image-content" data-aos="fade-left">
-					<img class="img-fluid" src="images/feature/feature-new-02.jpg" alt="ipad">
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+
+
+
 <!--====  End of Feature Grid  ====-->
 
 <!--==============================
 =            Services            =
 ===============================-->
-<section class="service section bg-gray">
-	<div class="container-fluid p-0">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="section-title">
-					<h2>An Interface For Lifestyle</h2>
-					<p><a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small Apps</a> makes
-						it easy to stay on top of your Life Style. No late tasks. No gimmicks.</p>
-				</div>
-			</div>
-		</div>
-		<div class="row no-gutters">
-			<div class="col-lg-6 align-self-center">
-				<!-- Feature Image -->
-				<div class="service-thumb left" data-aos="fade-right">
-					<img class="img-fluid" src="images/feature/iphone-ipad.jpg" alt="iphone-ipad">
-				</div>
-			</div>
-			<div class="col-lg-5 mr-auto align-self-center">
-				<div class="service-box">
-					<div class="row align-items-center">
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<i class="ti-bookmark"></i>
-								<!-- Heading -->
-								<h3>Easy Prototyping</h3>
-								<!-- Description -->
-								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
-							</div>
-						</div>
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<i class="ti-pulse"></i>
-								<!-- Heading -->
-								<h3>Sensor Bridge</h3>
-								<!-- Description -->
-								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
-							</div>
-						</div>
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<i class="ti-bar-chart"></i>
-								<!-- Heading -->
-								<h3>Strategist</h3>
-								<!-- Description -->
-								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
-							</div>
-						</div>
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<i class="ti-panel"></i>
-								<!-- Heading -->
-								<h3>Art Direction</h3>
-								<!-- Description -->
-								<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--====  End of Services  ====-->
+
 
 
 <!--=================================
 =            Video Promo            =
 ==================================-->
 <section class="video-promo section bg-1">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="content-block">
-					<!-- Heading -->
-					<h2>Watch Our Promo Video</h2>
-					<!-- Promotional Speech -->
-					<p>Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et,
-						porttitor at sem. Vivamus </p>
-					<!-- Popup Video -->
-					<a data-fancybox href="https://www.youtube.com/watch?v=jrkvirglgaQ">
-						<i class="ti-control-play video"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="container text-center">
+    <h2 class="text-white mb-3">Mira Un Video</h2>
+    <p class="text-light mb-4">
+      Conoce de manera sencilla qué es el EBITDA y cómo aplicarlo.
+    </p>
+
+    <!-- Contenedor tipo miniatura -->
+    <a href="https://www.youtube.com/watch?v=0fn_OWBgxaA"
+       target="_blank"
+       rel="noopener"
+       style="
+         display:inline-block;
+         position:relative;
+         max-width:480px;
+         width:100%;
+         border-radius:16px;
+         overflow:hidden;
+         box-shadow:0 10px 25px rgba(0,0,0,0.35);
+         background:#000;">
+      
+      <!-- Imagen (puedes cambiarla por un frame del video) -->
+      <img src="https://img.youtube.com/vi/0fn_OWBgxaA/hqdefault.jpg"
+           alt="Video EBITDA"
+           style="width:100%; display:block; opacity:0.85;">
+
+      <!-- Overlay oscuro -->
+      <div style="
+        position:absolute;
+        inset:0;
+        background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
+        display:flex;
+        align-items:center;
+        justify-content:center;">
+        
+        <!-- Botón de play -->
+        <div style="
+          width:80px;
+          height:80px;
+          border-radius:50%;
+          background:rgba(255,255,255,0.9);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          box-shadow:0 6px 15px rgba(0,0,0,0.4);">
+          <i class="ti-control-play" style="font-size:32px; color:#2563eb; margin-left:4px;"></i>
+        </div>
+      </div>
+    </a>
+
+  </div>
 </section>
+
+
+
+
 <!--====  End of Video Promo  ====-->
 
 <!--=================================
 =            Testimonial            =
 ==================================-->
-<section class="section testimonial" id="testimonial">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<!-- Testimonial Slider -->
-				<div class="testimonial-slider owl-carousel owl-theme">
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
-							</p>
-							<!-- Person Thumb -->
-							<div class="image">
-								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
-						</div>
-					</div>
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
-							</p>
-							<!-- Person Thumb -->
-							<div class="image">
-								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
-						</div>
-					</div>
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
-							</p>
-							<!-- Person Thumb -->
-							<div class="image">
-								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
-						</div>
-					</div>
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
-							</p>
-							<!-- Person Thumb -->
-							<div class="image">
-								<img src="images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--====  End of Testimonial  ====-->
 
-<section class="call-to-action-app section bg-blue">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2>It's time to change your mind</h2>
-				<p>Download over 2 million humans .Get <a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small Apps</a> free forever!
-					<br>We say you won’t look back.</p>
-				<ul class="list-inline">
-					<li class="list-inline-item">
-						<a href="" class="btn btn-rounded-icon">
-							<i class="ti-apple"></i>
-							Iphone
-						</a>
-					</li>
-					<li class="list-inline-item">
-						<a href="" class="btn btn-rounded-icon">
-							<i class="ti-android"></i>
-							Android
-						</a>
-					</li>
-					<li class="list-inline-item">
-						<a href="" class="btn btn-rounded-icon">
-							<i class="ti-microsoft-alt"></i>
-							Windows
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</section>
+
 
 <!--============================
 =            Footer            =
 =============================-->
 <footer>
   <div class="footer-main">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-12 m-md-auto align-self-center">
-          <div class="block">
-            <a href="index.html"><img src="images/logo-alt.png" alt="footer-logo"></a>
-            <!-- Social Site Icons -->
-            <ul class="social-icon list-inline">
-              <li class="list-inline-item">
-                <a href="https://www.facebook.com/themefisher"><i class="ti-facebook"></i></a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://twitter.com/themefisher"><i class="ti-twitter"></i></a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.instagram.com/themefisher/"><i class="ti-instagram"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
-          <div class="block-2">
-            <!-- heading -->
-            <h6>Product</h6>
-            <!-- links -->
-            <ul>
-              <li><a href="team.html">Teams</a></li>
-              <li><a href="blog.html">Blogs</a></li>
-              <li><a href="FAQ.html">FAQs</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
-          <div class="block-2">
-            <!-- heading -->
-            <h6>Resources</h6>
-            <!-- links -->
-            <ul>
-              <li><a href="sign-up.html">Singup</a></li>
-              <li><a href="sign-in.html">Login</a></li>
-              <li><a href="blog.html">Blog</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
-          <div class="block-2">
-            <!-- heading -->
-            <h6>Company</h6>
-            <!-- links -->
-            <ul>
-              <li><a href="career.html">Career</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="team.html">Investor</a></li>
-              <li><a href="privacy.html">Terms</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
-          <div class="block-2">
-            <!-- heading -->
-            <h6>Company</h6>
-            <!-- links -->
-            <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="text-center bg-dark py-4">
+ 
+   <div class="text-center bg-dark py-4">
     <small class="text-secondary">Copyright &copy; <script>document.write(new Date().getFullYear())</script>. Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></small class="text-secondary">
   </div>
 </footer>
@@ -816,6 +615,7 @@
 </script>
 
 
+<!-- Fancybox JS -->
 
 </body>
 

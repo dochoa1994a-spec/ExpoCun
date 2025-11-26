@@ -187,128 +187,143 @@
 
     <div id="final" class="final-message hidden"></div>
   </div>
-
-  <script>
-    const questions = [
-      {
-        text: "Ingresos operacionales por ventas",
-        isEbitda: true,
-        explanation: "✔ Sí. Es el punto de partida para calcular el EBITDA."
-      },
-      {
-        text: "Costo de ventas / costo de los servicios",
-        isEbitda: true,
-        explanation: "✔ Sí. Es un costo operativo, afecta el margen operativo."
-      },
-      {
-        text: "Gastos administrativos (sueldos, arriendo oficina, etc.)",
-        isEbitda: true,
-        explanation: "✔ Sí. Son gastos operativos antes de depreciación."
-      },
-      {
-        text: "Depreciación y amortización",
-        isEbitda: false,
-        explanation: "✖ No. Precisamente el EBITDA es ANTES de depreciación y amortización."
-      },
-      {
-        text: "Gasto por intereses del crédito bancario",
-        isEbitda: false,
-        explanation: "✖ No. El EBITDA es antes de intereses (financiación)."
-      },
-      {
-        text: "Impuesto de renta",
-        isEbitda: false,
-        explanation: "✖ No. El EBITDA es antes de impuestos."
-      },
-      {
-        text: "Ingreso por interés ganado sobre inversiones financieras",
-        isEbitda: false,
-        explanation: "✖ No. Es ingreso financiero, no operativo del negocio principal."
-      },
-      {
-        text: "Ganancia por venta de un activo fijo (ej. una máquina)",
-        isEbitda: false,
-        explanation: "✖ No. Es un resultado no recurrente / no operativo."
-      },
-      {
-        text: "Gasto de mercadeo y publicidad",
-        isEbitda: true,
-        explanation: "✔ Sí. Es un gasto operativo corriente."
-      },
-      {
-        text: "Multa extraordinaria por una demanda",
-        isEbitda: false,
-        explanation: "✖ No. Suele tratarse como gasto no operativo / extraordinario."
-      }
-    ];
-
-    let currentIndex = 0;
-    let score = 0;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
+<script>
+  const questions = [
+    {
+      text: "Ingresos operacionales por ventas",
+      isEbitda: true,
+      explanation: "✔ Sí. Es el punto de partida para calcular el EBITDA."
+    },
+    {
+      text: "Costo de ventas / costo de los servicios",
+      isEbitda: true,
+      explanation: "✔ Sí. Es un costo operativo, afecta el margen operativo."
+    },
+    {
+      text: "Gastos administrativos (sueldos, arriendo oficina, etc.)",
+      isEbitda: true,
+      explanation: "✔ Sí. Son gastos operativos antes de depreciación."
+    },
+    {
+      text: "Depreciación y amortización",
+      isEbitda: false,
+      explanation: "✖ No. Precisamente el EBITDA es ANTES de depreciación y amortización."
+    },
+    {
+      text: "Gasto por intereses del crédito bancario",
+      isEbitda: false,
+      explanation: "✖ No. El EBITDA es antes de intereses (financiación)."
+    },
+    {
+      text: "Impuesto de renta",
+      isEbitda: false,
+      explanation: "✖ No. El EBITDA es antes de impuestos."
+    },
+    {
+      text: "Ingreso por interés ganado sobre inversiones financieras",
+      isEbitda: false,
+      explanation: "✖ No. Es ingreso financiero, no operativo del negocio principal."
+    },
+    {
+      text: "Ganancia por venta de un activo fijo (ej. una máquina)",
+      isEbitda: false,
+      explanation: "✖ No. Es un resultado no recurrente / no operativo."
+    },
+    {
+      text: "Gasto de mercadeo y publicidad",
+      isEbitda: true,
+      explanation: "✔ Sí. Es un gasto operativo corriente."
+    },
+    {
+      text: "Multa extraordinaria por una demanda",
+      isEbitda: false,
+      explanation: "✖ No. Suele tratarse como gasto no operativo / extraordinario."
     }
+  ];
 
-    function updateUI() {
-      const q = questions[currentIndex];
-      document.getElementById("question-text").textContent = q.text;
-      document.getElementById("counter").textContent =
-        (currentIndex + 1) + " / " + questions.length;
-      document.getElementById("score").textContent = score;
-      const progress = ((currentIndex) / questions.length) * 100;
-      document.getElementById("progress-inner").style.width = progress + "%";
+  let currentIndex = 0;
+  let score = 0;
+
+  // ⏱️ Tiempo que queda visible la explicación (ms)
+  const FEEDBACK_DELAY = 4000; // 4 segundos
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
+  }
 
-    function answer(userSaysEbitda) {
-      const q = questions[currentIndex];
-      const feedback = document.getElementById("feedback");
+  function updateUI() {
+    const q = questions[currentIndex];
+    document.getElementById("question-text").textContent = q.text;
+    document.getElementById("counter").textContent =
+      (currentIndex + 1) + " / " + questions.length;
+    document.getElementById("score").textContent = score;
+
+    const progress = (currentIndex / questions.length) * 100;
+    document.getElementById("progress-inner").style.width = progress + "%";
+  }
+
+  function answer(userSaysEbitda) {
+  const q = questions[currentIndex];
+  const feedback = document.getElementById("feedback");
+  feedback.classList.remove("correct", "wrong");
+
+  if (userSaysEbitda === q.isEbitda) {
+    score++;
+    feedback.classList.add("correct");
+    feedback.textContent = "Correcto. " + q.explanation;
+
+    // 🎉 CONFETTI SUAVE CUANDO ACIERTA
+    confetti({
+      particleCount: 80,
+      spread: 60,
+      origin: { y: 0.6 }
+    });
+
+  } else {
+    feedback.classList.add("wrong");
+
+    // 🥺 CARITA TRISTE TIERNA CUANDO FALLA
+    feedback.textContent = "🥺 No exactamente… " + q.explanation;
+  }
+
+  currentIndex++;
+
+  if (currentIndex < questions.length) {
+    setTimeout(() => {
       feedback.classList.remove("correct", "wrong");
+      feedback.textContent = "¿Cuenta o no cuenta para el EBITDA?";
+      updateUI();
+    }, FEEDBACK_DELAY);
+  } else {
+    document.getElementById("progress-inner").style.width = "100%";
+    showFinalMessage();
+  }
+}
 
-      if (userSaysEbitda === q.isEbitda) {
-        score++;
-        feedback.classList.add("correct");
-        feedback.textContent = "Correcto. " + q.explanation;
-      } else {
-        feedback.classList.add("wrong");
-        feedback.textContent = "No exactamente… " + q.explanation;
-      }
+  function showFinalMessage() {
+    const final = document.getElementById("final");
+    final.classList.remove("hidden");
 
-      currentIndex++;
-
-      if (currentIndex < questions.length) {
-        setTimeout(() => {
-          feedback.classList.remove("correct", "wrong");
-          feedback.textContent = "¿Cuenta o no cuenta para el EBITDA?";
-          updateUI();
-        }, 1700);
-      } else {
-        // Juego terminado
-        document.getElementById("progress-inner").style.width = "100%";
-        showFinalMessage();
-      }
+    let msg;
+    if (score === questions.length) {
+      msg = "🔥 ¡EBITDA MASTER! Respondiste todo perfecto.";
+    } else if (score >= questions.length * 0.7) {
+      msg = `Muy bien: ${score}/${questions.length}. Ya tienes claro qué entra en el EBITDA.`;
+    } else {
+      msg = `Puntos: ${score}/${questions.length}. Buen intento, pero vale la pena repasar la definición de EBITDA.`;
     }
+    final.textContent = msg;
+  }
 
-    function showFinalMessage() {
-      const final = document.getElementById("final");
-      final.classList.remove("hidden");
+  // Inicializar
+  shuffle(questions);
+  updateUI();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-      let msg;
-      if (score === questions.length) {
-        msg = "🔥 ¡EBITDA MASTER! Respondiste todo perfecto.";
-      } else if (score >= questions.length * 0.7) {
-        msg = `Muy bien: ${score}/${questions.length}. Ya tienes claro qué entra en el EBITDA.`;
-      } else {
-        msg = `Puntos: ${score}/${questions.length}. Buen intento, pero vale la pena repasar la definición de EBITDA.`;
-      }
-      final.textContent = msg;
-    }
 
-    // Inicializar
-    shuffle(questions);
-    updateUI();
-  </script>
 </body>
 </html>

@@ -6,6 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    .fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.shake {
+  animation: shake 0.25s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #0f172a;
@@ -187,6 +207,9 @@
 
     <div id="final" class="final-message hidden"></div>
   </div>
+  <audio id="sound-correct" src="https://cdn.jsdelivr.net/gh/eddi-assets/audio/correct-soft.mp3"></audio>
+<audio id="sound-wrong" src="https://cdn.jsdelivr.net/gh/eddi-assets/audio/wrong-soft.mp3"></audio>
+
 <script>
   const questions = [
     {
@@ -264,18 +287,25 @@
     const progress = (currentIndex / questions.length) * 100;
     document.getElementById("progress-inner").style.width = progress + "%";
   }
-
-  function answer(userSaysEbitda) {
+function answer(userSaysEbitda) {
   const q = questions[currentIndex];
   const feedback = document.getElementById("feedback");
-  feedback.classList.remove("correct", "wrong");
+
+  feedback.classList.remove("correct", "wrong", "shake");
+  
+  const soundCorrect = document.getElementById("sound-correct");
+  const soundWrong = document.getElementById("sound-wrong");
 
   if (userSaysEbitda === q.isEbitda) {
     score++;
     feedback.classList.add("correct");
     feedback.textContent = "Correcto. " + q.explanation;
 
-    // 🎉 CONFETTI SUAVE CUANDO ACIERTA
+    // 🔊 sonido suave
+    soundCorrect.volume = 0.25;
+    soundCorrect.play();
+
+    // 🎉 confetti
     confetti({
       particleCount: 80,
       spread: 60,
@@ -283,18 +313,27 @@
     });
 
   } else {
-    feedback.classList.add("wrong");
-
-    // 🥺 CARITA TRISTE TIERNA CUANDO FALLA
+    feedback.classList.add("wrong", "shake");
     feedback.textContent = "🥺 No exactamente… " + q.explanation;
+
+    // 🔊 sonido suave de error
+    soundWrong.volume = 0.25;
+    soundWrong.play();
   }
 
   currentIndex++;
 
   if (currentIndex < questions.length) {
     setTimeout(() => {
-      feedback.classList.remove("correct", "wrong");
+      feedback.classList.remove("correct", "wrong", "shake");
       feedback.textContent = "¿Cuenta o no cuenta para el EBITDA?";
+
+      // Fade-in para la nueva pregunta
+      document.querySelector(".question-box").classList.add("fade-in");
+      setTimeout(() => {
+        document.querySelector(".question-box").classList.remove("fade-in");
+      }, 400);
+
       updateUI();
     }, FEEDBACK_DELAY);
   } else {
